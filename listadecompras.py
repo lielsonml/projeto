@@ -1,3 +1,6 @@
+# Lista de compras
+
+
 lista_compras = []
 
 indice = 0
