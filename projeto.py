@@ -74,10 +74,10 @@ while True:
             input('Pressione enter para girar...')
         # Animação dos giros
             for _ in range(10):
-            a, b, c = random.choices(simbolos, k=3)
-            timezle()
-            print(f"| {a} | {b} | {c} |")
-            time.sleep(0.15)
+                a, b, c = random.choices(simbolos, k=3)
+                timezle()
+                print(f"| {a} | {b} | {c} |")
+                time.sleep(0.3)
         # Resultado do último giro
             print('\nResultado:')
             if a == b == c:
@@ -87,10 +87,10 @@ while True:
             else:
                 print("😢 que pena! Tente novamente")
             break
-        continuação = input('Você quer continuar jogando? (sim/não): ')
-        if continuação.strip().lower() != 'sim':
-                print('Obrigado, tente novamente quando quiser!')
-        break
+        continuacao = input('Você quer continuar jogando? (sim/não): ')
+        if continuacao != 'sim':
+            print('Obrigado, tente novamente quando quiser!')
+            break
 
 
 
