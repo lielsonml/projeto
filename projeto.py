@@ -1,9 +1,12 @@
 import emoji
+import random
+import time
+import os
 while True:
     print(emoji.emojize('Bem-vindo ao nosso projeto! :smiley:', language='alias'))
     print('Digite 1 para usar calculadora')
     print('Digite 2 para calcular imc')
-    print('Digite 3 para jogar jogo de adivinhação')
+    print('Digite 3 para jogar caça-níquel ')
     print('digite 4 para descobrir tabuada de um número')
     print('')
 
@@ -47,13 +50,49 @@ while True:
             print(f'O resultado da raiz quadrada deu: {resultado}')
         else:
             print('Opção inválida')
-        continuação = input('Deseja continuar? (sim/não): ').lower().strip()
+    if teste == '2':
+        print('Vamos calcular seu IMC!')
         print('')
-        if continuação == 'sim':
-            print('Escolha qual alternativa você deseja? ')
-        else:
-            print('Obrigado, tente novamente quando quiser!')
+        peso = float(input('Digite seu peso: '))
+        altura = float(input('Digite sua altura: '))   
+        imc = peso / (altura **2)
+        if imc < 18.5:
+            print(f'Seu Imc é: {imc:.2f} e você está abaixo do peso')
+        elif imc >= 18.5 and imc < 24.9:
+            print(f'Seu Imc é: {imc:.2f} e você está com o peso normal')
+        elif imc >= 25:
+            print(f'Seu Imc é: {imc:.2f} e você está acima do peso')      
+        print('')   
+
+    if teste == '3':
+        simbolos = ["🍒","🔔","💎","⭐","🍊","🍇"]
+        def timezle():
+            os.system('cls' if os.name == 'nt' else 'clear')
+
+        print('bem-vindo ao jogo caça-níquel!')
+        while True:
+            input('Pressione enter para girar...')
+        # Animação dos giros
+            for _ in range(10):
+            a, b, c = random.choices(simbolos, k=3)
+            timezle()
+            print(f"| {a} | {b} | {c} |")
+            time.sleep(0.15)
+        # Resultado do último giro
+            print('\nResultado:')
+            if a == b == c:
+                print("🏆 Parábens!! Quanta Sorte!")
+            elif a == b or a == c or b == c:
+                print("✨ boa! Dois símbolos iguais!")
+            else:
+                print("😢 que pena! Tente novamente")
             break
-       
+        continuação = input('Você quer continuar jogando? (sim/não): ')
+        if continuação.strip().lower() != 'sim':
+                print('Obrigado, tente novamente quando quiser!')
+        break
+
+
+
 
 
