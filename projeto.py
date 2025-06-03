@@ -1,16 +1,15 @@
+import math
 import emoji
 import random
 import time
 import os
-while True:
-    print(emoji.emojize('Bem-vindo ao nosso projeto! :smiley:', language='alias'))
-    print('Digite 1 para usar calculadora')
-    print('Digite 2 para calcular imc')
-    print('Digite 3 para jogar caça-níquel ')
-    print('digite 4 para descobrir tabuada de um número')
-    print('')
-
-    teste = input('Digite o número da opção desejada: ')
+import threading
+import tkinter as tk
+ 
+def abrir_calculadora():
+    principal = tk.Toplevel(janela)
+    principal.title =('Calculadora')
+    principal.geometry('350x400')
     if teste == '1':
         print('Qual opção você deseja?')
         print('')
@@ -87,12 +86,13 @@ while True:
             else:
                 print("😢 que pena! Tente novamente")
             break
-        continuacao = input('Você quer continuar jogando? (sim/não): ')
-        if continuacao != 'sim':
+    continuacao = input('Você quer continuar jogando? (sim/não): ')
+    if continuacao != 'sim':
             print('Obrigado, tente novamente quando quiser!')
             break
+janela = tk.Tk()
 
 
 
 
-
+janela.mainloop()
