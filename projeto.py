@@ -117,9 +117,7 @@ janela.title('Menu Principal')
 janela.geometry('350x400')
 janela.configure(bg=BG_COR)
 
-botao_style = {
-    width: 20
-}
+
 tk.Label(janela, text='Bem-vindo ao Menu Principal', font=(FONTE_TITULO), bg=BG_COR,fg=FG_COR).pack(pady=10)
 tk.Button(janela, text='Calculadora', width=20, command=abrir_calculadora).pack(pady=5)
 tk.Button(janela,text='IMC', width=20, command=abrir_imc).pack(pady=5)
