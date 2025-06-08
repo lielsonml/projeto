@@ -18,19 +18,24 @@ def abrir_calculadora():
     principal = tk.Toplevel(janela)
     principal.title =('Calculadora')
     principal.geometry('350x400')
+    principal.configure(bg=BG_COR)
 
-    tk.Label(principal,text='Escolha a operação:',font=('Arial',12)).pack(pady=5)
+    tk.Label(principal,text='Escolha a operação:',font=(FONTE_PADRAO),bg=BG_COR,fg=FG_COR).pack(pady=5)
     valores = tk.StringVar(value='soma')
-    ops = [("Soma","soma"),("Subtração","sub"),("Multiplicação","multi"),("Divisão","div")]
+    ops = [("Soma","soma"),
+           ("Subtração","sub"),
+           ("Multiplicação","multi"),
+           ("Divisão","div")
+    ]
     for texto, valor in ops:
-        tk.Radiobutton(principal,text=texto,variable=valores, value = valor).pack(anchor='w')
-    tk.Label(principal,text="primeiro número:").pack()
-    num1_entry = tk.Entry(principal)
-    num1_entry.pack()
-    tk.Label(principal,text="Segundo número(ou deixe vazio para raiz):").pack()
-    num2_entry = tk.Entry(principal)
-    num2_entry.pack()
-    resultado_label = tk.Label(principal, text="", font=('arial',12))
+        tk.Radiobutton(principal,text=texto,variable=valores,value=valor,font=FONTE_PADRAO,bg=BG_COR,fg=FG_COR,selectcolor=BTN_BG,activebackground=BTN_ACTIVE_BG,activeforeground=BTN_ACTIVE_FG).pack(anchor='w',padx=10)
+    tk.Label(principal,text="Primeiro número:",font=FONTE_PADRAO,bg=BG_COR,fg=FG_COR).pack()
+    num1_entry = tk.Entry(principal,font=FONTE_PADRAO,bg="#FFF",fg="#000")
+    num1_entry.pack(pady=5)
+    tk.Label(principal,text="Segundo número:",font=FONTE_PADRAO,bg=BG_COR,fg=FG_COR).pack()
+    num2_entry = tk.Entry(principal,font=FONTE_PADRAO,bg="#FFF",fg="#000")
+    num2_entry.pack(pady=5)
+    resultado_label = tk.Label(principal, text="", font=FONTE_PADRAO,bg=BG_COR,fg=FG_COR)
     resultado_label.pack(pady=10)
 
     def calcular():
@@ -53,26 +58,27 @@ def abrir_calculadora():
         except ValueError:
             resultado_label.config(text='Digite números válidos!')
 
-    tk.Button(principal, text='Calcular', command=calcular).pack(pady=10)  
+    tk.Button(principal, text='Calcular', command=calcular,font=FONTE_PADRAO,bg=BTN_BG,fg=BTN_FG,activebackground=BTN_ACTIVE_BG,activeforeground=BTN_ACTIVE_FG,width=15,bd=0,cursor="hand2").pack(pady=10)  
 
 def abrir_imc():
         principal = tk.Toplevel(janela)
         principal.title('IMC')
         principal.geometry('350x400')
-        tk.Label(principal, text='Peso (kg):').pack()
+        principal.configure(bg=BG_COR)
+        tk.Label(principal, text='Peso (kg):',font=FONTE_PADRAO,bg=BG_COR,fg=FG_COR).pack()
         peso_entry = tk.Entry(principal)
         peso_entry.pack()
-        tk.Label(principal, text='Altura (m):').pack()
+        tk.Label(principal, text='Altura (m):',font=FONTE_PADRAO,bg=BG_COR,fg=FG_COR).pack()
         altura_entry = tk.Entry(principal)
         altura_entry.pack()
-        resultado_label = tk.Label(principal ,text='',font=('arial',12))
+        resultado_label = tk.Label(principal ,text='',font=FONTE_PADRAO,bg=BG_COR,fg=FG_COR)
         resultado_label.pack(pady=10)
         def calcular_imc():
             try:
                 peso = float(peso_entry.get())
                 altura = float(altura_entry.get())
                 imc = peso / (altura **2)
-                resultado_label.config(text=f'IMC: {imc:.2f}')
+                resultado_label.config(text=f'IMC: {imc:.2f}',)
                 if imc < 18.5:
                     resultado_label.config(text='Abaixo do peso')
                 elif 18.5 <= imc < 24.9:
@@ -83,16 +89,17 @@ def abrir_imc():
                     resultado_label.config(text='Obesidade')
             except ValueError:
                 resultado_label.config(text='Digite números válidos!')
-        tk.Button(principal, text='Calcular IMC', command= calcular_imc).pack(pady=10) 
+        tk.Button(principal, text='Calcular IMC', command= calcular_imc,font=FONTE_PADRAO,bg=BTN_BG,fg=BTN_FG,activebackground=BTN_ACTIVE_BG,activeforeground=BTN_ACTIVE_FG,cursor="hand2").pack(pady=10) 
 
 def abrir_cacaniquel():
     principal = tk.Toplevel(janela)
     principal.title('Caça-níquel')
     principal.geometry('350x400')
+    principal.configure(bg=BG_COR)
     simbolos = ["🍒","🔔","💎","⭐","🍊","🍇"]
-    resultado_label = tk.Label(principal, text='| ? | ? | ? |', font=('arial', 32))
-    resultado_label.pack(pady=20)
-    status_label = tk.Label(principal, text='', font=('arial',14))
+    resultado_label = tk.Label(principal, text='| ? | ? | ? |', font=('arial', 38,'bold'),bg=BG_COR,fg=FG_COR)
+    resultado_label.pack(pady=30)
+    status_label = tk.Label(principal, text='', font=('arial',16,'bold'), bg=BG_COR, fg=FG_COR)
     status_label.pack(pady=10)
         
     def animar():
@@ -108,19 +115,19 @@ def abrir_cacaniquel():
         else:
             status_label.config(text="😢 que pena! Tente novamente")
     def girar():
-        status_label.config(text='')
+        status_label.config(text='',fg=FG_COR)
         threading.Thread(target=animar).start()
 
-    tk.Button(principal, text='Girar', command=girar, font=('arial',14)).pack(pady=10)
+    tk.Button(principal, text='Girar', command=girar, font=FONTE_PADRAO,bg=BTN_BG,fg=BTN_FG,activebackground=BTN_ACTIVE_BG,activeforeground=BTN_ACTIVE_FG,cursor='hand2').pack(pady=20)
 janela = tk.Tk()
 janela.title('Menu Principal')
 janela.geometry('350x400')
 janela.configure(bg=BG_COR)
 
 
-tk.Label(janela, text='Bem-vindo ao Menu Principal', font=(FONTE_TITULO), bg=BG_COR,fg=FG_COR).pack(pady=10)
-tk.Button(janela, text='Calculadora', width=20, command=abrir_calculadora).pack(pady=5)
-tk.Button(janela,text='IMC', width=20, command=abrir_imc).pack(pady=5)
-tk.Button(janela, text='Caça-níquel', width=20, command=abrir_cacaniquel).pack(pady=5)
-tk.Button(janela, text='Sair', width=20 , command=janela.quit).pack(pady=20)
+tk.Label(janela, text='Bem-vindo ao Menu Principal', font=FONTE_TITULO, bg=BG_COR,fg=FG_COR).pack(pady=10)
+tk.Button(janela, text='Calculadora', width=20, command=abrir_calculadora, font=FONTE_TITULO,bg=BG_COR,fg=FG_COR).pack(pady=10)
+tk.Button(janela,text='IMC', width=20, command=abrir_imc,font=FONTE_TITULO,bg=BG_COR,fg=FG_COR).pack(pady=5)
+tk.Button(janela, text='Caça-níquel', width=20, command=abrir_cacaniquel,font=FONTE_TITULO,bg=BG_COR,fg=FG_COR).pack(pady=5)
+tk.Button(janela, text='Sair', width=20 , command=janela.quit,bg=BG_COR,fg=FG_COR).pack(pady=20)
 janela.mainloop()
